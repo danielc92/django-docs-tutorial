@@ -1,9 +1,5 @@
-# Project Title
-A few sentences about the project.
-What are you building?
-What problem are you trying to solve?
-Who is the project for? Timeframe?
-
+# Django Docs Tutorial
+Creating a poll application from the official Django documentation site. Might not follow documentation exactly and will make adjustments along the way.
 # Before you get started
 Concepts/Software/Programming modules a user may have to read up on before getting started with this project. eg. 'Read about [neural networks](https://towardsdatascience.com/how-to-build-your-own-neural-network-from-scratch-in-python-68998a08e4f6?gi=44b811975215) before getting started.'
 
@@ -13,24 +9,23 @@ Concepts/Software/Programming modules a user may have to read up on before getti
 git clone https//link.to.this.projects.git-repo
 ```
 **Modules/dependencies:**
-- `pandas`
-- `requests`
-- `jupyter`
-- `sklearn`
+- `django`
 
 Install the following dependences:
 ```sh
-cd /local/location/of/this/repo
-pip install requirements.txt
+source location-of-venv/bin/activate
+pip install django
 ```
 
 # Tests
-- Tests performed on this project. What did you do? Which files were used? Was it successful?
+- Creating a project
+- Creating an app
+- Creating an ORM database model for 'Questions' and 'Choices'
+- Creating Database using `migrate` and `makemigrations`
+- Accessing the database, making basic crud operations using Django `shell`, as well as admin panel via `localhost:8000/admin`
 
 # Contributors
-- Name of Contributor 1
-- Name of Contributor 2
+- Daniel Corcoran
 
 # Sources
-- Sources for techniques/tutorials used in this project to help newcomers
-- Sources for data used in this project
+- [The official Django documentation](https://docs.djangoproject.com/en/2.2/)
