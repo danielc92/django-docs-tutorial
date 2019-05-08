@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Question, Choice
 from django.urls import reverse
-from .forms import RawQuestionForm
+from .forms import RawQuestionForm, RawChoiceForm
 
 def polls_index(request):
 
@@ -52,7 +52,7 @@ def polls_create_question(request):
 
     form = RawQuestionForm(request.GET)
     errors = None
-    
+
     if request.method == "POST":
         form = RawQuestionForm(request.POST)
         if form.is_valid():
@@ -66,3 +66,23 @@ def polls_create_question(request):
 
     return render(request, 'create-question.html', context)
 
+
+def polls_create_choice(request, question_id):
+
+    form = RawChoiceForm(request.GET)
+    errors = None
+
+    if request.method == "POST":
+        form = RawChoiceForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            Choice.objects.create(question_id=question_id, **form.cleaned_data)
+            return HttpResponse('<code>You have successfully added a new choice.</code>')
+        else:
+            errors = form.errors
+
+    question = Question.objects.get(id=question_id)
+
+    context = {'form': form, 'errors':errors, 'question':question}
+
+    return render(request, 'create-choice.html', context)
