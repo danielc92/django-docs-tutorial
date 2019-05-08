@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from polls.views import polls_index, polls_detail, polls_results, polls_vote
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('polls/details/<int:question_id>/', polls_detail, name='polls_detail'),
+    path('polls/results/<int:question_id>/', polls_detail, name='polls_results'),
+    path('polls/vote/<int:question_id>/', polls_detail, name='polls_vote'),
+    path('polls/', polls_detail, name='polls_index')
 ]
