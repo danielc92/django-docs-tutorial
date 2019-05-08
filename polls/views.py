@@ -1,6 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Question, Choice
 
-# Create your views here.
-def polls_index(*args, **kwargs):
-	return HttpResponse("<h1>Polls Index</h1>")
+
+# View for questions list
+def polls_questions_list(request):
+
+	data = Question.objects.all()
+	print(data)
+
+	context = {'title': 'Question List Page',
+			   'data':data}
+
+	return render(request, 'questions-list.html', context)

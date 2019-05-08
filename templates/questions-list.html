@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<section class="section">
+	<section class="container">
+		<section class="content">
+			<h2>Questions List</h2>
+
+			{% for q in data %}
+				<div class="notification is-light">
+					<h3>{{ q.question_text }}</h3>
+					<p class="">{{ q.pub_date}}</p>
+				</div>
+			{% endfor %}
+		</section>
+	</section>
+</section>
+
+{% endblock %}
