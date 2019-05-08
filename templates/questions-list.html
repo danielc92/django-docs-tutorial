@@ -12,8 +12,10 @@
 				<div class="notification is-light">
 					<h3>{{ q.question_text }}</h3>
 					<p class="">{{ q.pub_date}}</p>
+					<a class="button is-primary is-outlined" href="{% url 'polls-vote' q.id  %}">Vote for this question!</a>
 				</div>
 			{% endfor %}
+
 		</section>
 	</section>
 </section>
