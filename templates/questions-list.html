@@ -21,6 +21,14 @@
 				</div>
 			{% endfor %}
 
+			{% if data.has_previous %}
+			<a class="button is-primary" href="?page={{ data.previous_page_number }}">Previous Page</a>
+			{% endif %}
+
+			{% if data.has_next %}
+			<a class="button is-primary" href="?page={{ data.next_page_number }}">Next Page</a>
+			{% endif %}
+
 		</section>
 	</section>
 </section>

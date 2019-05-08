@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Question, Choice
 from django.urls import reverse
 from .forms import RawQuestionForm, RawChoiceForm
+from django.core.paginator import Paginator
+
 
 def polls_index(request):
 
@@ -38,13 +40,18 @@ def polls_result(request, question_id):
 # View for questions list
 def polls_questions_list(request):
 
-    data = Question.objects.all()
-    print(data)
+    questions_list = Question.objects.all()
+    paginator = Paginator(questions_list, 8)
+
+    page = request.GET.get('page')
+
+    data = paginator.get_page(page) 
 
     context = {'title': 'Question List Page',
                'data':data}
 
     return render(request, 'questions-list.html', context)
+
 
 # View which handles creating new questions through a form
 # Everything will be automatically validated in this form
