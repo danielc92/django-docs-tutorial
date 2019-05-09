@@ -1,9 +1,9 @@
-from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Question, Choice
-from django.urls import reverse
+from django.shortcuts import get_object_or_404, render
 from .forms import RawQuestionForm, RawChoiceForm
 from django.core.paginator import Paginator
+from .models import Question, Choice
+from django.urls import reverse
 
 
 def polls_index(request):
@@ -79,19 +79,25 @@ def polls_questions_list(request):
 def polls_create_question(request):
 
     form = RawQuestionForm(request.GET)
+
+    form_string = form.as_p()
+    print(form_string)
+    form_string = form_string.replace('<input', '<input class="input"')
+    form_string = form_string.replace('<label', '<label class="label"')
+
     errors = None
 
     if request.method == "POST":
         form = RawQuestionForm(request.POST)
-        print(dir(form))
+
         if form.is_valid():
-            print(form.cleaned_data)
+
             Question.objects.create(**form.cleaned_data)
             return HttpResponse('<code>You have successfully added a new question.</code>')
         else:
             errors = form.errors
 
-    context = {'title':'Polls Create Question', 'form': form, 'errors':errors}
+    context = {'title':'Polls Create Question', 'form': form_string, 'errors':errors}
 
     return render(request, 'create-question.html', context)
 
