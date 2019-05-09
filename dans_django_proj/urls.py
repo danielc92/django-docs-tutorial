@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from polls.views import polls_questions_list, polls_create_choice, polls_vote, polls_result, polls_index, polls_create_question
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 
 urlpatterns = [
     path('', polls_index, name='polls-index'),
@@ -27,3 +29,4 @@ urlpatterns = [
     path('admin/', admin.site.urls)
     ]
     
+urlpatterns += staticfiles_urlpatterns()
