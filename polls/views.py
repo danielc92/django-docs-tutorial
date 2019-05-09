@@ -21,6 +21,7 @@ def polls_vote(request, question_id):
 
     except (KeyError, Choice.DoesNotExist):
         return render(request, 'vote.html', {
+            'title':'Polls Vote Page',
             'question': question,
             'error_message': "You didn't select a choice.",
         })
@@ -30,11 +31,14 @@ def polls_vote(request, question_id):
 
         return HttpResponseRedirect(reverse('polls-results', args=(question.id,)))
 
+
 def polls_result(request, question_id):
 
     question = get_object_or_404(Question, pk=question_id)
 
-    return render(request, 'results.html', {'question': question})
+    context = {'title':'Polls Results Page', 'question':question}
+
+    return render(request, 'results.html', context)
 
 
 # View for questions list
@@ -47,7 +51,7 @@ def polls_questions_list(request):
 
     data = paginator.get_page(page) 
 
-    context = {'title': 'Question List Page',
+    context = {'title': 'Polls List Page',
                'data':data}
 
     return render(request, 'questions-list.html', context)
@@ -69,7 +73,7 @@ def polls_create_question(request):
         else:
             errors = form.errors
 
-    context = {'form': form, 'errors':errors}
+    context = {'title':'Polls Create Question', 'form': form, 'errors':errors}
 
     return render(request, 'create-question.html', context)
 
@@ -90,6 +94,6 @@ def polls_create_choice(request, question_id):
 
     question = Question.objects.get(id=question_id)
 
-    context = {'form': form, 'errors':errors, 'question':question}
+    context = {'title':'Polls Create Choices','form': form, 'errors':errors, 'question':question}
 
     return render(request, 'create-choice.html', context)
