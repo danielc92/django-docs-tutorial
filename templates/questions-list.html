@@ -15,8 +15,10 @@
 					available choices.</p>
 					<p class="">{{ q.pub_date}}</p>
 					<div class="buttons">
-						<a class="button is-link is-outlined" href="{% url 'polls-create-choice' q.id  %}">Add choices for this question!</a>
-						<a class="button is-primary is-outlined" href="{% url 'polls-vote' q.id  %}">Vote for this question!</a>
+						<a class="button is-link is-outlined" href="{% url 'polls-create-choice' q.id  %}">Add choices for this question</a>
+						<a class="button is-primary is-outlined" href="{% url 'polls-vote' q.id  %}">Vote for this question</a>
+						<a class="button is-info is-outlined" href="{% url 'polls-results' q.id  %}">Show poll results</a>
+
 					</div>
 				</div>
 			{% endfor %}

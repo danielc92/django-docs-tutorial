@@ -6,16 +6,39 @@
 <section class="section">
     <section class="container">
         <section class="content">
-            <h2>{{ question.question_text }}</h2>
+            <h2 style="margin-top: 0;">{{ question.question_text }}</h2>
 
-            <ul>
-            {% for choice in question.choice_set.all %}
-                <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-            {% endfor %}
-            </ul>
+            <a class="button is-primary is-outlined" href="{% url 'polls-vote' question.id %}">Vote again?</a>
 
-            <a href="{% url 'polls-vote' question.id %}">Vote again?</a>
+            <canvas id="myChart" width="400" height="300" style="max-width: 90%;"></canvas>
+            <script>
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'horizontalBar',
+                data: {
+                    labels: {{ choice_texts|safe }},
+                    datasets: [{
+                        label: '# of Votes',
+                        data: {{ choice_votes|safe }},
+                        backgroundColor: {{ choice_colours|safe }},
+                        borderColor: {{ choice_border_colours|safe}},
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                }
+            });
+            </script>
     </section>
+</section>
 </section>
 
 {% endblock %}

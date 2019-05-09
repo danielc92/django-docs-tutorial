@@ -31,12 +31,29 @@ def polls_vote(request, question_id):
 
         return HttpResponseRedirect(reverse('polls-results', args=(question.id,)))
 
+import json
 
 def polls_result(request, question_id):
 
     question = get_object_or_404(Question, pk=question_id)
 
-    context = {'title':'Polls Results Page', 'question':question}
+    choice_data = question.choice_set.all()
+
+    choice_texts = []
+    choice_votes = []
+
+    for choice in choice_data:
+        choice_texts.append(choice.choice_text)
+        choice_votes.append(choice.votes)
+
+    context = {'title':'Polls Results Page', 
+    'question':question, 
+    'choice_texts':choice_texts,
+    'choice_votes':choice_votes,
+    'choice_colours':['rgba(0, 209, 178, 0.55)'] * len(choice_data),
+    'choice_border_colours': ['rgba(0, 209, 178, 0.9)'] * len(choice_data)}
+
+    print(context)
 
     return render(request, 'results.html', context)
 
@@ -66,6 +83,7 @@ def polls_create_question(request):
 
     if request.method == "POST":
         form = RawQuestionForm(request.POST)
+        print(dir(form))
         if form.is_valid():
             print(form.cleaned_data)
             Question.objects.create(**form.cleaned_data)
