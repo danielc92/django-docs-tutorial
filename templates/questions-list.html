@@ -3,10 +3,14 @@
 
 {% block content %}
 
+<section class="hero is-primary is-bold">
+	{% include 'navbar.html' %}
+</section>
+
 <section class="section">
 	<section class="container">
 		<section class="content">
-			<h2>Questions List</h2>
+			<h2>Poll List</h2>
 
 			{% for q in data %}
 				<div class="notification is-light">
@@ -15,20 +19,20 @@
 					available choices.</p>
 					<p class="">{{ q.pub_date}}</p>
 					<div class="buttons">
-						<a class="button is-link is-outlined" href="{% url 'polls-create-choice' q.id  %}">Add choices for this question</a>
-						<a class="button is-primary is-outlined" href="{% url 'polls-vote' q.id  %}">Vote for this question</a>
-						<a class="button is-info is-outlined" href="{% url 'polls-results' q.id  %}">Show poll results</a>
+						<a class="button is-link is-outlined" href="{% url 'polls-create-choice' q.id  %}">Add choices for this poll</a>
+						<a class="button is-link is-outlined" href="{% url 'polls-vote' q.id  %}">Vote for this poll</a>
+						<a class="button is-link is-outlined" href="{% url 'polls-results' q.id  %}">Show poll results</a>
 
 					</div>
 				</div>
 			{% endfor %}
 
 			{% if data.has_previous %}
-			<a class="button is-primary" href="?page={{ data.previous_page_number }}">Previous Page</a>
+			<a class="button is-outlined is-primary" href="?page={{ data.previous_page_number }}">Previous Page</a>
 			{% endif %}
 
 			{% if data.has_next %}
-			<a class="button is-primary" href="?page={{ data.next_page_number }}">Next Page</a>
+			<a class="button is-outlined is-primary" href="?page={{ data.next_page_number }}">Next Page</a>
 			{% endif %}
 
 		</section>
