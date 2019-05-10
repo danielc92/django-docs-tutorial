@@ -21,15 +21,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY SETTINGS 
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
-ENV = os.getenv('DJANGO_ENVIRONMENT')
 
-if ENV == 'PRODUCTION':
+import json
+
+with open('../../django_env.json', 'r') as f:
+    ENV_DATA = json.load(f)
+
+SECRET_KEY = ENV_DATA['DJANGO_SECRET_KEY']
+
+if ENV_DATA['DJANGO_ENVIRONMENT'] == 'PRODUCTION':
     DEBUG = True
 else:
     DEBUG = False
