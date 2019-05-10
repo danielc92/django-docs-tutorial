@@ -40,9 +40,9 @@ with open(ENV_DIR, 'r') as f:
 SECRET_KEY = ENV_DATA['DJANGO_SECRET_KEY']
 
 if ENV_DATA['DJANGO_ENVIRONMENT'] == 'PRODUCTION':
-    DEBUG = True
-else:
     DEBUG = False
+else:
+    DEBUG = True
 
 
 ALLOWED_HOSTS = ['danielc92.pythonanywhere.com', 
