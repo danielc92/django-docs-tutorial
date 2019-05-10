@@ -1,7 +1,19 @@
 # Django Docs Tutorial
 Creating a poll application from the official Django documentation site. Might not follow documentation exactly and will make adjustments along the way.
 # Before you get started
-Concepts/Software/Programming modules a user may have to read up on before getting started with this project. eg. 'Read about [neural networks](https://towardsdatascience.com/how-to-build-your-own-neural-network-from-scratch-in-python-68998a08e4f6?gi=44b811975215) before getting started.'
+The following concepts are covered in the making of this project.
+- Python virtual environments
+- Django project configuration
+- Django administration
+- Dynamic routing
+- Template engines
+- HTTP/HTTPS methods
+- Relational databases
+- CRUD operations
+- ORM models
+- Django deployment to the Cloud
+- Responsive web design
+- Application security
 
 # Setup
 **How to obtain this repository:**
