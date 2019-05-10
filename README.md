@@ -6,10 +6,12 @@ Concepts/Software/Programming modules a user may have to read up on before getti
 # Setup
 **How to obtain this repository:**
 ```sh
-git clone https//link.to.this.projects.git-repo
+git clone https://github.com/danielc92/django-docs-tutorial.git
+
 ```
 **Modules/dependencies:**
-- `django`
+- `django` (python)
+- `Chart.js` (javascript)
 
 Install the following dependences:
 ```sh
@@ -22,10 +24,15 @@ pip install django
 - Creating an app
 - Creating an ORM database model for 'Questions' and 'Choices'
 - Creating Database using `migrate` and `makemigrations`
+- Creating a question (POST)
+- Creating choices for a given question (POST)
+- Voting for a choice for a given question (POST)
 - Accessing the database, making basic crud operations using Django `shell`, as well as admin panel via `localhost:8000/admin`
+- Visualizing poll results using horizontal bar chart from Chart.js library
 
 # Contributors
 - Daniel Corcoran
 
 # Sources
 - [The official Django documentation](https://docs.djangoproject.com/en/2.2/)
+- [Chart Js Official site](https://www.chartjs.org/)
