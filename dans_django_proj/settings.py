@@ -29,8 +29,12 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 
 import json
+import pathlib
 
-with open('../../django_env.json', 'r') as f:
+HOME_DIR = str(pathlib.Path.home())
+ENV_DIR = os.path.join(HOME_DIR, 'django_env.json')
+
+with open(ENV_DIR, 'r') as f:
     ENV_DATA = json.load(f)
 
 SECRET_KEY = ENV_DATA['DJANGO_SECRET_KEY']
