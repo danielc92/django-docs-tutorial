@@ -1,17 +1,9 @@
 from django import forms
-from .models import Question, Choice
+from .models import Question, Choice, choices
 
 class RawQuestionForm(forms.Form):
 	question_text = forms.CharField()
-	category = forms.ChoiceField(choices=(
-        ('POL', 'Politics'),
-        ('SCI', 'Science'),
-        ('FOO', 'Food'),
-        ('TEC', 'Technology'),
-        ('FAS', 'Fashion'),
-        ('ADV', 'Advice'),
-        ('OTH', 'Other')
-    )  )
+	category = forms.ChoiceField(choices=choices)
 	author = forms.CharField()
 
 class RawChoiceForm(forms.Form):
