@@ -2,15 +2,35 @@
 
 {% block content %}
 
+<section class="hero is-primary is-medium is-bold">
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    {% include 'navbar.html' %}
+  </div>
+
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">
+        Welcome to Daniels Poll App
+      </h1>
+      <h5 class="subtitle">
+        This application was built using <code>Django 2.2.1</code> and <code>Python 3.7</code> in <code>Ubuntu 19.04</code>. I followed the official Django documentation and made some adaptations along the way. I plan to further improve my web development knowledge and refining my ablities in Django.
+      </h5>
+      <a href="{% url 'polls-list' %}" class="button is-primary is-outlined">Take me to the questions list</a>
+    </div>
+  </div>
+
+    </nav>
+  </div>
+</section>
+
 <section class="section">
 	<section class="container">
 		
 		<section class="content">
-			<h1>Welcome to Daniels Poll App</h1>
 
-			<p>This application was built using <code>Django 2.2.1</code> and <code>Python 3.7</code> in <code>Ubuntu 19.04</code>. I followed the official Django documentation and made some adaptations along the way. I plan to further improve my web development knowledge and refining my ablities in Django..</p>
-
-			<a href="{% url 'polls-list' %}" class="button is-primary is-outlined">Take me to the questions list</a>
+			
 
 			<h3>Concepts</h3>
 			<p>Below are the concepts covered in building the polling application</p>
