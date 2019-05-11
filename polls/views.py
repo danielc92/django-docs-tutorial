@@ -93,7 +93,7 @@ def polls_create_question(request):
         if form.is_valid():
 
             Question.objects.create(**form.cleaned_data)
-            return HttpResponse('<code>You have successfully added a new question.</code>')
+            return HttpResponseRedirect(reverse('polls-list'))
         else:
             errors = form.errors
 
@@ -112,7 +112,7 @@ def polls_create_choice(request, question_id):
         if form.is_valid():
             print(form.cleaned_data)
             Choice.objects.create(question_id=question_id, **form.cleaned_data)
-            return HttpResponse('<code>You have successfully added a new choice.</code>')
+            return HttpResponseRedirect(reverse('polls-list'))
         else:
             errors = form.errors
 
