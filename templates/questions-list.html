@@ -23,11 +23,11 @@
 						<p><span class="tag is-dark">{{ q.category }}</p>
 
 					</div>
-						<div class="column">
+						<div class="column is-two-fifths">
 							<div class="buttons">
-								<a class="button is-link is-outlined" href="{% url 'polls-create-choice' q.id  %}">Add choices for this poll</a>
-								<a class="button is-link is-outlined" href="{% url 'polls-vote' q.id  %}">Vote for this poll</a>
-								<a class="button is-link is-outlined" href="{% url 'polls-results' q.id  %}">Show poll results</a>
+								<a class="button is-link is-outlined is-fullwidth" href="{% url 'polls-create-choice' q.id  %}">Add choices for this poll</a>
+								<a class="button is-link is-outlined is-fullwidth" href="{% url 'polls-vote' q.id  %}">Vote for this poll</a>
+								<a class="button is-link is-outlined is-fullwidth" href="{% url 'polls-results' q.id  %}">Show poll results</a>
 							</div>
 
 							<p class="has-text-grey help">Created on: {{ q.pub_date }}</p>
