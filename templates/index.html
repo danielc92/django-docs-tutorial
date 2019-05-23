@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% load static %}
 
 <section class="hero is-primary is-medium is-bold">
   <!-- Hero head: will stick at the top -->
@@ -30,6 +31,44 @@
 <section class="section">
 	<section class="container">
 		
+		<article class="columns is-vcentered">
+			<div class="column">
+			    <img src="{% static 'undraw_questions_75e0.png' %}" alt="">
+			</div>
+			<div class="column">
+				<div class="content">
+				<h1>Create and explore polls</h1>
+				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat consequuntur, tenetur quos non praesentium ut, architecto ducimus vero sed ipsa saepe nesciunt id fugit magnam doloribus nostrum expedita temporibus. Velit.</p>
+			  </div>
+			</div>
+		</article>
+
+		<article class="columns is-vcentered">
+				
+				<div class="column">
+					<div class="content">
+					<h1>Create voting options and vote</h1>
+					<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat consequuntur, tenetur quos non praesentium ut, architecto ducimus vero sed ipsa saepe nesciunt id fugit magnam doloribus nostrum expedita temporibus. Velit.</p>
+					</div>
+				</div>
+
+				<div class="column">
+						<img src="{% static 'undraw_note_list_etto.png' %}" alt="">
+				</div>
+			</article>
+
+			<article class="columns is-vcentered">
+					<div class="column">
+							<img src="{% static 'undraw_visual_data_b1wx.png' %}" alt="">
+					</div>
+					<div class="column">
+						<div class="content">
+						<h1>Visualize poll results seamlessly</h1>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat consequuntur, tenetur quos non praesentium ut, architecto ducimus vero sed ipsa saepe nesciunt id fugit magnam doloribus nostrum expedita temporibus. Velit.</p>
+						</div>
+					</div>
+				</article>
+
 		<section class="content">
 
 			
@@ -50,15 +89,7 @@
 			<li>Responsive web design</li>
 			<li>Application security</li>
 </ul>
-			<h3>Features</h3>
-			<p>This application allows users to:</p>
-			<ul>
-				<li>Create questions</li>
-				<li>Create choices for questions</li>
-				<li>Vote for a given question based on question id</li>
-				<li>View results for a given question based on question id</li>
-				<li>View complete list of user submitted questions</li>
-			</ul>
+
 
 			<h3>Deployment</h3>
 			<p>This project is currently being hosted on Pythonanywhere.</p>
