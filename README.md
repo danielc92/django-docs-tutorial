@@ -1,4 +1,4 @@
-# Django Docs Tutorial
+# Django Polls App
 Creating a poll application from the official Django documentation site. Might not follow documentation exactly and will make adjustments along the way.
 # Before you get started
 The following concepts are covered in the making of this project.
@@ -18,7 +18,7 @@ The following concepts are covered in the making of this project.
 # Setup
 **How to obtain this repository:**
 ```sh
-git clone https://github.com/danielc92/django-docs-tutorial.git
+git clone https://github.com/danielc92/django-polls-app.git
 
 ```
 **Modules/dependencies:**
