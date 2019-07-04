@@ -107,6 +107,9 @@ def polls_create_question(request):
 def polls_create_choice(request, question_id):
 
     form = RawChoiceForm(request.GET)
+    form_string = form.as_p()
+    form_string = form_string.replace('<input', '<input class="input"')
+    form_string = form_string.replace('<label', '<label class="label"')
     errors = None
 
     if request.method == "POST":
@@ -120,6 +123,6 @@ def polls_create_choice(request, question_id):
 
     question = Question.objects.get(id=question_id)
 
-    context = {'title':'Polls Create Choices','form': form, 'errors':errors, 'question':question}
+    context = {'title':'Polls Create Choices','form': form_string, 'errors':errors, 'question':question}
 
     return render(request, 'create-choice.html', context)

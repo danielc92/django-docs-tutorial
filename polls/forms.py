@@ -1,7 +1,7 @@
 from django import forms
 from .models import Question, Choice, choices
 
-class RawQuestionForm(forms.ModelForm):
+class RawQuestionForm(forms.Form):
 	question_text = forms.CharField()
 	category = forms.ChoiceField(choices=choices)
 	author = forms.CharField()

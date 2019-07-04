@@ -12,7 +12,7 @@
 			<p>Created on {{question.pub_date}}</p>
 			<h3>Add choices below</h3>
 			<form class="form" method='POST'> {% csrf_token %}
-				{{ form.as_p }}
+				{{ form | safe}}
 				<input class="button is-primary is-outlined" type="submit" value="Create Choice">
 			</form>
 		</article>
