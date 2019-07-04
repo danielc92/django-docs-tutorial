@@ -84,6 +84,8 @@ def polls_create_question(request):
     print(form_string)
     form_string = form_string.replace('<input', '<input class="input"')
     form_string = form_string.replace('<label', '<label class="label"')
+    form_string = form_string.replace('<select', '<div class="control"><div class="select"><select')
+    form_string = form_string.replace('</select>', '</select></div></div>')
 
     errors = None
 
