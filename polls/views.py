@@ -6,18 +6,23 @@ from .models import Poll, Tag, Option
 from django.urls import reverse
 import json
 
+
 def polls_index(request):
 
     context = {'title': 'Polls Home Page'}
+
     return render(request, 'index.html', context)
 
-# View for voting
 
 def polls_view(request, poll_id):
 
     poll = get_object_or_404(Poll, pk=poll_id)
+    
+    options = poll.options.all()
+    option_votes = [o.votes for o in options]
+    option_names = [o.text for o in options]   
 
-    context = { 'poll': poll }
+    context = { 'poll': poll, 'votes': option_votes, 'names': option_names}
 
     return render(request, 'poll-detail.html', context)
 
@@ -25,11 +30,11 @@ def polls_view(request, poll_id):
 def option_vote(request, option_id):
 
     option = get_object_or_404(Option, pk=option_id)
-
+    poll_id = option.poll.id
     option.votes = option.votes + 1
     option.save()
 
-    return HttpResponseRedirect(reverse('polls-view', args=(1,)))
+    return HttpResponseRedirect(reverse('polls-view', args=(poll_id,)))
 
 
 def polls_result(request, poll_id):

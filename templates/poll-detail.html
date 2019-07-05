@@ -9,25 +9,27 @@
 	<section class="container">
 		<section class="notification is-white">
             <div class="content">
-                    
-                    <h1>{{poll.title}}</h1>
-                    <p>by: {{poll.author}}</p>
-                    <p class="help has-text-grey">Created on: {{poll.created_at}}</p>
-                    <p class="help has-text-grey">Modified on: {{poll.modified_at}}</p>
-               
-            </div>
-            
+                <h1>{{poll.title}}</h1>
+                <p>by: {{poll.author}}</p>
+                <p class="help has-text-grey">Modified on: {{poll.modified_at}}</p>
+                <p> 
+                    {% for tag in poll.tags.all %}
+                    <span class="tag is-medium is-light">{{ tag }}</span>
+                    {% endfor %} 
+                </p>
+            </div>  
 </section>
 
 <section class="notification is-white">
         <div class="content">
-                <h1>Results</h1>
+                <h1>Vote</h1>
                 <table class="table is-hoverable">
                     <thead>
                         <tr>
-                            <td>Option</td>
-                            <td>Votes</td>
-                            <td>Vote</td>
+                            <th>Id</th>
+                            <th>Option</th>
+                            <th>Votes</th>
+                            <th>Vote</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,19 +38,47 @@
                             <td>{{ option.id }}</td>
                             <td>{{ option.text}}</td>
                             <td>{{ option.votes}}</td>
-
                             <td>
-                                <a href="" class="button is-small is-primary">Vote for this option</a>
+                                <a href="{% url 'polls-vote' option.id %}" class="button is-small is-outlined is-primary">Vote for this option</a>
                             </td>
                         </tr>
                         {% endfor %}
                     </tbody>
-
                 </table>
-                
         </div>
-        
+</section>
+<section class="notification is-white">
+    <div class="content">
+            <h1>Results</h1>
+            <canvas id="myChart" width="400" height="300" style="max-width: 90%;"></canvas>
+    </div>
+</section>  
 </section>
 </section>
-</section>
+<script>
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: {{ names | safe}},
+                datasets: [{
+                    label: '# of Votes',
+                    data: {{ votes | safe}},
+                    backgroundColor: '#3CC4A6',
+                    borderColor: '#000',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 10
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
 {% endblock %}
