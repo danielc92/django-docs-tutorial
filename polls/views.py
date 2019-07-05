@@ -58,7 +58,7 @@ def polls_result(request, question_id):
 
 
 # View for questions list
-def polls_questions_list(request):
+def polls_list(request):
 
     polls = Poll.objects.all()
 
@@ -76,25 +76,24 @@ def polls_questions_list(request):
 
 # View which handles creating new questions through a form
 # Everything will be automatically validated in this form
-def polls_create_question(request):
-
+def polls_create(request):
+    print('woo')
     if request.method == 'POST':
         form = PollForm(request.POST)
-    if form.is_valid():
-        new = form.save()
+        if form.is_valid():
+            new = form.save()
 
-        for c in ['c1','c2','c3','c4']:
-            text = form.data[c]
-            if len(text) > 0:
-                Option.objects.create(text=text,poll=new)
+            for c in ['c1','c2','c3','c4']:
+                text = form.data[c]
+                if len(text) > 0:
+                    Option.objects.create(text=text,poll=new)
 
     else:
+        print('wood')
         form = PollForm()
+        form_string = form.as_p()
 
-    context = {'form': form}
+    context = {'title':'Polls Create Question', 
+                'form': form_string}
 
     return render(request, 'create-poll.html', context)
-
-    context = {'title':'Polls Create Question', 'form': form_string, 'errors':errors}
-
-    return render(request, 'create-question.html', context)

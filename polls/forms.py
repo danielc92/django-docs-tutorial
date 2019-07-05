@@ -1,4 +1,4 @@
-from .models import Tag, Poll, Option
+from .models import Poll
 from django import forms
 
 class PollForm(forms.ModelForm):
@@ -10,4 +10,4 @@ class PollForm(forms.ModelForm):
 
     class Meta:
         model = Poll
-        fields = ['title', 'tags']
+        fields = ['title', 'tags', 'author']
