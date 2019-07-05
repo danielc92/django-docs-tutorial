@@ -1,10 +1,13 @@
+from .models import Tag, Poll, Option
 from django import forms
-from .models import Question, Choice, choices
 
-class RawQuestionForm(forms.Form):
-	question_text = forms.CharField()
-	category = forms.ChoiceField(choices=choices)
-	author = forms.CharField()
+class PollForm(forms.ModelForm):
+    
+    c1 = forms.CharField(help_text="At least two choices are required.", label = "Choice 1", max_length=255)
+    c2 = forms.CharField(help_text="At least two choices are required.", label = "Choice 2", max_length=255)
+    c3 = forms.CharField(label = "Choice 3", max_length=255, required=False)
+    c4 = forms.CharField(label = "Choice 4", max_length=255, required=False)
 
-class RawChoiceForm(forms.Form):
-	choice_text = forms.CharField()
+    class Meta:
+        model = Poll
+        fields = ['title', 'tags']
