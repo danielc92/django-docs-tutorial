@@ -1,106 +1,101 @@
-{% extends 'base.html' %}
-
-{% block content %}
-{% load static %}
+{% extends 'base.html' %} {% block content %} {% load static %}
 
 <!-- HERO BANNER -->
 <section class="hero is-dark is-medium">
-  <!-- Hero head: will stick at the top -->
-  <div class="hero-head">
-    {% include 'navbar.html' %}
-  </div>
+    <!-- Hero head: will stick at the top -->
+    <div class="hero-head">
+        {% include 'navbar.html' %}
+    </div>
 
-  <!-- Hero content: will be in the middle -->
-  <div class="hero-body">
-    <div class="container has-text-centered">
-    	<div class="content">
-      <h1 class="title">
-        Welcome to Daniel Corcoran's Poll App
-      </h1>
-      <p class="">
-				This is the first application I built using Django web framework. The official Django documentation was used as a starting point, following that, I adapted the application with more features, including the integration of an open source charting framework. It posed some challenges, in learning the overall structure of Django as well as becoming familiar with the way Django implements database ORM models, and deployment.
-      </p>
-      <a href="{% url 'polls-list' %}" class="button is-medium is-light"><span class="icon is-medium">
+    <!-- Hero content: will be in the middle -->
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <div class="content">
+                <h1 class="title">
+                    Welcome to Daniel Corcoran's Poll App
+                </h1>
+                <p class="">
+                    This is the first application I built using Django web framework. The official Django documentation was used as a starting point, following that, I adapted the application with more features, including the integration of an open source charting framework.
+                    It posed some challenges, in learning the overall structure of Django as well as becoming familiar with the way Django implements database ORM models, and deployment.
+                </p>
+                <a href="{% url 'polls-list' %}" class="button is-medium is-light"><span class="icon is-medium">
 					<i class="fas fa-poll-h"></i>
 				</span><span>View polls</span></a>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
     </nav>
-  </div>
+    </div>
 </section>
 
 <section class="section">
-	<section class="container">
-		
-		<article class="columns is-vcentered">
-			<div class="column">
-			    <img src="{% static 'undraw_questions_75e0.png' %}" alt="">
-			</div>
-			<div class="column">
-				<div class="content">
-				<h1>Create and explore polls</h1>
-				<p>Satisfy your curiosity. Create polls for the world to interact with. Explore a wide range of polls of various categories, created by the community.</p>
-			</div>
-			</div>
-		</article>
+    <section class="container">
 
-		<article class="columns is-vcentered" style="margin-top: 3rem;">
-				<div class="column">
-					<div class="content">
-					<h1>Create voting options and vote</h1>
-					<p>Once your poll have been created and posted to the database, you can add choices and have the community vote, bringing you the answer you need.</p>
-					</div>
-				</div>
+        <article class="columns is-vcentered">
+            <div class="column">
+                <img src="{% static 'undraw_questions_75e0.png' %}" alt="">
+            </div>
+            <div class="column">
+                <div class="content">
+                    <h1>Create and explore polls</h1>
+                    <p>Satisfy your curiosity. Create polls for the world to interact with. Explore a wide range of polls of various categories, created by the community.</p>
+                </div>
+            </div>
+        </article>
 
-				<div class="column">
-						<img src="{% static 'undraw_note_list_etto.png' %}" alt="">
-				</div>
-			</article>
+        <article class="columns is-vcentered" style="margin-top: 3rem;">
+            <div class="column">
+                <div class="content">
+                    <h1>Create voting options and vote</h1>
+                    <p>Once your poll have been created and posted to the database, you can add choices and have the community vote, bringing you the answer you need.</p>
+                </div>
+            </div>
 
-			<article class="columns is-vcentered" style="margin-top: 3rem;">
-					<div class="column">
-							<img src="{% static 'undraw_visual_data_b1wx.png' %}" alt="">
-					</div>
-					<div class="column">
-						<div class="content">
-						<h1>Visualize</h1>
-						<p>View insightful, elegant, animated visualizations relating to community polls. Charts are generated using open source javascript library Chart.js</p>
-						</div>
-					</div>
-			</article>
+            <div class="column">
+                <img src="{% static 'undraw_note_list_etto.png' %}" alt="">
+            </div>
+        </article>
 
-			<article class="columns">
-				<div class="column is-7">
-					<div class="" style="margin-top: 3rem;">
-						<div class="content">
-							<h1>Concepts</h1>
-							<p>Below are the concepts covered in building the polling application</p>
-							<ul>
-								<li>Containing dependencies in virtual environment and version control.</li>
-								<li>Routing, HTTP methods, Template rendering with Jinja</li>
-								<li>Database design, mapping and CRUD operations</li>
-								<li>Django deployment to the Cloud</li>
-								<li>Responsive web design</li>
-								<li>Security considerations; hashing, environment variables, csrf tokens.</li>
-							</ul>
-					</div>
-				</div>
-				</div>
-				<div class="column is-5">
-					<div class="" style="margin-top: 3rem;">
-						<div class="content">
-								<h1>Deployment</h1>
-								<p>This project is currently being hosted on Pythonanywhere.</p>
-								<p><a class="button is-primary is-outlined" href="https://www.pythonanywhere.com/">Visit Pythonanywhere</a></p>
-						</div>
-				</div>
-				</div>
-			</article>
+        <article class="columns is-vcentered" style="margin-top: 3rem;">
+            <div class="column">
+                <img src="{% static 'undraw_visual_data_b1wx.png' %}" alt="">
+            </div>
+            <div class="column">
+                <div class="content">
+                    <h1>Visualize</h1>
+                    <p>View insightful, elegant, animated visualizations relating to community polls. Charts are generated using open source javascript library Chart.js</p>
+                </div>
+            </div>
+        </article>
 
-			
-			
-	</section>
+        <article class="columns">
+            <div class="column is-7">
+                <div class="" style="margin-top: 3rem;">
+                    <div class="content">
+                        <h1>Concepts</h1>
+                        <p>Below are the concepts covered in building the polling application</p>
+                        <ul>
+                            <li>Containing dependencies in virtual environment and version control.</li>
+                            <li>Routing, HTTP methods, Template rendering with Jinja</li>
+                            <li>Database design, mapping and CRUD operations</li>
+                            <li>Django deployment to the Cloud</li>
+                            <li>Responsive web design</li>
+                            <li>Security considerations; hashing, environment variables, csrf tokens.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-5">
+                <div class="" style="margin-top: 3rem;">
+                    <div class="content">
+                        <h1>Deployment</h1>
+                        <p>This project is currently being hosted on Pythonanywhere.</p>
+                        <p><a class="button is-primary is-outlined" href="https://www.pythonanywhere.com/">Visit Pythonanywhere</a></p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
 </section>
 
 {% endblock content %}

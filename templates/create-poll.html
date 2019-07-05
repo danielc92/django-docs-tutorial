@@ -1,26 +1,22 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <section class="hero is-dark is-bold">
-	{% include 'navbar.html' %}
+    {% include 'navbar.html' %}
 </section>
 
 
 <section class="section" style="min-height: 100vh; background-color: #f4f4f4;">
-	<section class="container">
-		<div class="notification is-white">
-				<article class="content">
-						<h2>Create a poll</h2>
-						<p>When creating a poll you must include at least two options (1 and 2)</p>
-						<form class="form" method="POST"> 
-							{% csrf_token %}
-							{{ form|safe }}
-							<input class="button is-primary is-outlined" type="submit" value="Save">
-						</form>
-					</article>
-		</div>
-		
-	</section>
+    <section class="container">
+        <div class="notification is-white">
+            <article class="content">
+                <h2>Create a poll</h2>
+                <p>When creating a poll you must include at least two options (1 and 2)</p>
+                <form class="form" method="POST">
+                    {% csrf_token %} {{ form|safe }}
+                    <input class="button is-primary is-outlined" type="submit" value="Save">
+                </form>
+            </article>
+        </div>
+    </section>
 </section>
 
 {% endblock content %}

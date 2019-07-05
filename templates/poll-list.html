@@ -1,47 +1,40 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <section class="hero is-dark is-bold">
-	{% include 'navbar.html' %}
+    {% include 'navbar.html' %}
 </section>
 
 <section class="section" style="min-height: 100vh; background-color: #f4f4f4;">
-	<section class="container">
-			<div class="columns is-multiline">
-			{% for q in data %}
-				
-			
-				<div class="column is-half-desktop is-half-tablet is-full" >
-						<div class="notification is-white"style="height: 100%;">
-							<div class="content">
-							<h1>{{ q.title }}</h1>
-							<p>By <strong>{{ q.author }}</strong></p>
-							<p>This poll has <strong>{{ q.options.count }}</strong> available choices.</p>
-							<p class="has-text-grey help">Created on: {{ q.created_at }}</p>
-							<a class="is-rounded button is-primary is-outlined" href="{% url 'polls-view' q.id  %}">View</a>
-							<hr style="margin: .8rem 0; height: 1px;">
-							<p>
-								{% for tag in q.tags.all %}
-									<span class="tag is-rounded is-warning is-medium"># {{ tag }}</span>
-								{% endfor %}
-							</p>
-						</div>
-						</div>
-					</div>
-					{% endfor %}	
-				</div>
-		
+    <section class="container">
+        <div class="columns is-multiline">
+            {% for q in data %}
 
-			{% if data.has_previous %}
-			<a class="button is-outlined is-primary" href="?page={{ data.previous_page_number }}">Previous Page</a>
-			{% endif %}
 
-			{% if data.has_next %}
-			<a class="button is-outlined is-primary" href="?page={{ data.next_page_number }}">Next Page</a>
-			{% endif %}
+            <div class="column is-half-desktop is-half-tablet is-full">
+                <div class="notification is-white" style="height: 100%;">
+                    <div class="content">
+                        <h1>{{ q.title }}</h1>
+                        <p>By <strong>{{ q.author }}</strong></p>
+                        <p>This poll has <strong>{{ q.options.count }}</strong> available choices.</p>
+                        <p class="has-text-grey help">Created on: {{ q.created_at }}</p>
+                        <a class="is-rounded button is-primary is-outlined" href="{% url 'polls-view' q.id  %}">View</a>
+                        <hr style="margin: .8rem 0; height: 1px;">
+                        <p>
+                            {% for tag in q.tags.all %}
+                            <span class="tag is-rounded is-warning is-medium"># {{ tag }}</span> {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
-		</section>
-	</section>
+
+        {% if data.has_previous %}
+        <a class="button is-outlined is-primary" href="?page={{ data.previous_page_number }}">Previous Page</a> {% endif %} {% if data.has_next %}
+        <a class="button is-outlined is-primary" href="?page={{ data.next_page_number }}">Next Page</a> {% endif %}
+
+    </section>
+</section>
 </section>
 
 {% endblock %}
