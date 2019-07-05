@@ -69,12 +69,13 @@ def polls_create(request):
             return HttpResponseRedirect(reverse('polls-list'))
     else:
         form = PollForm()
-        form = form.as_p()
-        form = form\
-                            .replace('<input', '<input class="input"')\
-                            .replace('<label', '<label class="label"')\
-                            .replace('<select', '<div class="select is-multiple"><select')\
-                            .replace('</select>', '</select></div>')
+    
+    form = form.as_p()
+    form = form\
+                .replace('<input', '<input class="input"')\
+                .replace('<label', '<label class="label"')\
+                .replace('<select', '<div class="select is-multiple"><select')\
+                .replace('</select>', '</select></div>')
 
     context = {'title':'Polls Create Question', 
                 'form': form}
