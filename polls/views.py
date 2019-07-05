@@ -61,7 +61,7 @@ def polls_result(request, question_id):
 def polls_questions_list(request):
 
     polls = Poll.objects.all()
-    
+
     paginator = Paginator(polls, 8)
 
     page = request.GET.get('page')
@@ -78,26 +78,22 @@ def polls_questions_list(request):
 # Everything will be automatically validated in this form
 def polls_create_question(request):
 
-    form = RawQuestionForm(request.GET)
+    if request.method == 'POST':
+        form = PollForm(request.POST)
+    if form.is_valid():
+        new = form.save()
 
-    form_string = form.as_p()
-    print(form_string)
-    form_string = form_string.replace('<input', '<input class="input"')
-    form_string = form_string.replace('<label', '<label class="label"')
-    form_string = form_string.replace('<select', '<div class="control"><div class="select"><select')
-    form_string = form_string.replace('</select>', '</select></div></div>')
+        for c in ['c1','c2','c3','c4']:
+            text = form.data[c]
+            if len(text) > 0:
+                Option.objects.create(text=text,poll=new)
 
-    errors = None
+    else:
+        form = PollForm()
 
-    if request.method == "POST":
-        form = RawQuestionForm(request.POST)
+    context = {'form': form}
 
-        if form.is_valid():
-
-            Question.objects.create(**form.cleaned_data)
-            return HttpResponseRedirect(reverse('polls-list'))
-        else:
-            errors = form.errors
+    return render(request, 'create-poll.html', context)
 
     context = {'title':'Polls Create Question', 'form': form_string, 'errors':errors}
 

@@ -16,6 +16,7 @@ class Poll(models.Model):
 
     title = models.CharField(max_length=50)
     tags = models.ManyToManyField(Tag)
+    author = models.CharField(max_length=40)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
