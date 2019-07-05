@@ -7,6 +7,7 @@ from django.urls import reverse
 import json
 
 
+# Home page view
 def polls_index(request):
 
     context = {'title': 'Polls Home Page'}
@@ -14,19 +15,19 @@ def polls_index(request):
     return render(request, 'index.html', context)
 
 
+# Poll detail view
 def polls_view(request, poll_id):
 
     poll = get_object_or_404(Poll, pk=poll_id)
-    
     options = poll.options.all()
     option_votes = [o.votes for o in options]
     option_names = [o.text for o in options]   
-
     context = { 'poll': poll, 'votes': option_votes, 'names': option_names}
 
     return render(request, 'poll-detail.html', context)
 
 
+# Option vote view
 def option_vote(request, option_id):
 
     option = get_object_or_404(Option, pk=option_id)
@@ -37,14 +38,12 @@ def option_vote(request, option_id):
     return HttpResponseRedirect(reverse('polls-view', args=(poll_id,)))
 
 
+# Poll list view
 def polls_list(request):
 
     polls = Poll.objects.all()
-
     paginator = Paginator(polls, 8)
-
     page = request.GET.get('page')
-
     data = paginator.get_page(page) 
 
     context = {'title': 'Polls List Page',
@@ -53,7 +52,7 @@ def polls_list(request):
     return render(request, 'poll-list.html', context)
 
 
-
+# Poll creation view
 def polls_create(request):
 
     if request.method == 'POST':
