@@ -27,7 +27,7 @@ class Option(models.Model):
     
     text = models.CharField(max_length=255)
     poll = models.ForeignKey(Poll, related_name='options', on_delete=models.CASCADE)
-
+    votes = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 

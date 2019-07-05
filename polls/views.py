@@ -1,10 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from .forms import RawQuestionForm, RawChoiceForm
+from .forms import PollForm
 from django.core.paginator import Paginator
-from .models import Question, Choice
+from .models import Poll, Tag, Option
 from django.urls import reverse
-
+import json
 
 def polls_index(request):
 
@@ -13,29 +13,28 @@ def polls_index(request):
 
 # View for voting
 def polls_vote(request, question_id):
+    return HttpResponse('polls vote')
+    # question = get_object_or_404(Question, pk=question_id)
 
-    question = get_object_or_404(Question, pk=question_id)
+    # try:
+    #     selected_choice = question.choice_set.get(pk=request.POST['choice'])
 
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    # except (KeyError, Choice.DoesNotExist):
+    #     return render(request, 'vote.html', {
+    #         'title':'Polls Vote Page',
+    #         'question': question,
+    #         'error_message': "You didn't select a choice.",
+    #     })
+    # else:
+    #     selected_choice.votes += 1
+    #     selected_choice.save()
 
-    except (KeyError, Choice.DoesNotExist):
-        return render(request, 'vote.html', {
-            'title':'Polls Vote Page',
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
+    #     return HttpResponseRedirect(reverse('polls-results', args=(poll.id,)))
 
-        return HttpResponseRedirect(reverse('polls-results', args=(question.id,)))
-
-import json
 
 def polls_result(request, question_id):
 
-    question = get_object_or_404(Question, pk=question_id)
+    poll = get_object_or_404(Poll, pk=poll_id)
 
     choice_data = question.choice_set.all()
 
@@ -61,8 +60,8 @@ def polls_result(request, question_id):
 # View for questions list
 def polls_questions_list(request):
 
-    questions_list = Question.objects.all()
-    paginator = Paginator(questions_list, 8)
+    polls = Poll.objects.all()
+    paginator = Paginator(polls, 8)
 
     page = request.GET.get('page')
 
@@ -71,7 +70,7 @@ def polls_questions_list(request):
     context = {'title': 'Polls List Page',
                'data':data}
 
-    return render(request, 'questions-list.html', context)
+    return render(request, 'poll-list.html', context)
 
 
 # View which handles creating new questions through a form
@@ -102,27 +101,3 @@ def polls_create_question(request):
     context = {'title':'Polls Create Question', 'form': form_string, 'errors':errors}
 
     return render(request, 'create-question.html', context)
-
-
-def polls_create_choice(request, question_id):
-
-    form = RawChoiceForm(request.GET)
-    form_string = form.as_p()
-    form_string = form_string.replace('<input', '<input class="input"')
-    form_string = form_string.replace('<label', '<label class="label"')
-    errors = None
-
-    if request.method == "POST":
-        form = RawChoiceForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data)
-            Choice.objects.create(question_id=question_id, **form.cleaned_data)
-            return HttpResponseRedirect(reverse('polls-list'))
-        else:
-            errors = form.errors
-
-    question = Question.objects.get(id=question_id)
-
-    context = {'title':'Polls Create Choices','form': form_string, 'errors':errors, 'question':question}
-
-    return render(request, 'create-choice.html', context)
