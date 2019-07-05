@@ -33,8 +33,10 @@
                     <tbody>
                         {% for option in poll.options.all %}
                         <tr>
+                            <td>{{ option.id }}</td>
                             <td>{{ option.text}}</td>
                             <td>{{ option.votes}}</td>
+
                             <td>
                                 <a href="" class="button is-small is-primary">Vote for this option</a>
                             </td>

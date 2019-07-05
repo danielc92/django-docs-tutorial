@@ -14,31 +14,22 @@ def polls_index(request):
 # View for voting
 
 def polls_view(request, poll_id):
+
     poll = get_object_or_404(Poll, pk=poll_id)
 
-    context = { 'poll': poll}
+    context = { 'poll': poll }
 
     return render(request, 'poll-detail.html', context)
 
-def polls_vote(request, option_id):
 
-    # option = get_object_or_404(Poll, pk=poll_id)
+def option_vote(request, option_id):
 
-    # try:
-    #     selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    option = get_object_or_404(Option, pk=option_id)
 
-    # except (KeyError, Choice.DoesNotExist):
-    #     return render(request, 'vote.html', {
-    #         'title':'Polls Vote Page',
-    #         'question': question,
-    #         'error_message': "You didn't select a choice.",
-    #     })
-    # else:
-    #     selected_choice.votes += 1
-    #     selected_choice.save()
+    option.votes = option.votes + 1
+    option.save()
 
-    return HttpResponse('success')
-    # return HttpResponseRedirect(reverse('polls-results', args=(poll.id,)))
+    return HttpResponseRedirect(reverse('polls-view', args=(1,)))
 
 
 def polls_result(request, poll_id):
