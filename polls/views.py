@@ -94,8 +94,13 @@ def polls_create(request):
                     Option.objects.create(text=text,poll=new)
     else:
         form = PollForm()
+        form_string = form.as_p()
+        form_string = form_string.replace('<input', '<input class="input"')\
+        .replace('<label', '<label class="label"')\
+        .replace('<select', '<div class="select is-multiple"><select')\
+        .replace('</select>', '</select></div>')
 
     context = {'title':'Polls Create Question', 
-                'form': form}
+                'form': form_string}
 
     return render(request, 'create-poll.html', context)

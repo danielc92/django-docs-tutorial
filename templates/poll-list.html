@@ -5,30 +5,29 @@
 	{% include 'navbar.html' %}
 </section>
 
-<section class="section" style="background-color: #eee;">
+<section class="section" style="min-height: 100vh; background-color: #eee;">
 	<section class="container">
 		<section class="content">
-			<h2>Poll List</h2>
-
 			{% for q in data %}
 				<div class="notification is-white" style="border-radius: 0; box-shadow:0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15)!important;">
 					<div class="columns">
 						<div class="column">
-							<h2>{{ q.title }}</h2>
-							<p>Created by <strong>{{ q.author }}</strong></p>
+							<h1>{{ q.title }}</h1>
+							<p>By <strong>{{ q.author }}</strong></p>
 							<p>This poll has <strong>{{ q.options.count }}</strong> available choices.</p>
-							<p>
-								{% for tag in q.tags.all %}
-									<span class="tag is-dark">{{ tag }}</span>
-								{% endfor %}
-							</p>
+							
 					</div>
 						<div class="column is-two-fifths">
-							<div class="buttons">
-								<a class="button is-primary is-outlined is-fullwidth" href="{% url 'polls-view' q.id  %}">Detail view</a>
-							</div>
-
+							
 							<p class="has-text-grey help">Created on: {{ q.created_at }}</p>
+							<p>
+									{% for tag in q.tags.all %}
+										<span class="tag is-rounded is-warning is-medium">{{ tag }}</span>
+									{% endfor %}
+								</p>
+								<div class="buttons">
+										<a class="is-rounded button is-primary is-outlined is-fullwidth" href="{% url 'polls-view' q.id  %}">Detail view</a>
+									</div>
 						</div>
 					</div>
 				</div>
