@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero is-primary is-bold">
+	{% include 'navbar.html' %}
+</section>
+
+<section class="section" style="min-height: 100vh; background-color: #eee;">
+	<section class="container">
+		<section class="notification is-white">
+            <div class="content">
+                    
+                    <h1>{{poll.title}}</h1>
+                    <p>by: {{poll.author}}</p>
+                    <p class="help has-text-grey">Created on: {{poll.created_at}}</p>
+                    <p class="help has-text-grey">Modified on: {{poll.modified_at}}</p>
+               
+            </div>
+            
+</section>
+
+<section class="notification is-white">
+        <div class="content">
+                <h1>Results</h1>
+                <table class="table is-hoverable">
+                    <thead>
+                        <tr>
+                            <td>Option</td>
+                            <td>Votes</td>
+                            <td>Vote</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for option in poll.options.all %}
+                        <tr>
+                            <td>{{ option.text}}</td>
+                            <td>{{ option.votes}}</td>
+                            <td>
+                                <a href="" class="button is-small is-primary">Vote for this option</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                
+        </div>
+        
+</section>
+</section>
+</section>
+{% endblock %}

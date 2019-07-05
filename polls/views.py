@@ -12,9 +12,17 @@ def polls_index(request):
     return render(request, 'index.html', context)
 
 # View for voting
-def polls_vote(request, question_id):
-    return HttpResponse('polls vote')
-    # question = get_object_or_404(Question, pk=question_id)
+
+def polls_view(request, poll_id):
+    poll = get_object_or_404(Poll, pk=poll_id)
+
+    context = { 'poll': poll}
+
+    return render(request, 'poll-detail.html', context)
+
+def polls_vote(request, option_id):
+
+    # option = get_object_or_404(Poll, pk=poll_id)
 
     # try:
     #     selected_choice = question.choice_set.get(pk=request.POST['choice'])
@@ -29,10 +37,11 @@ def polls_vote(request, question_id):
     #     selected_choice.votes += 1
     #     selected_choice.save()
 
-    #     return HttpResponseRedirect(reverse('polls-results', args=(poll.id,)))
+    return HttpResponse('success')
+    # return HttpResponseRedirect(reverse('polls-results', args=(poll.id,)))
 
 
-def polls_result(request, question_id):
+def polls_result(request, poll_id):
 
     poll = get_object_or_404(Poll, pk=poll_id)
 
