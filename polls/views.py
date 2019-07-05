@@ -37,32 +37,6 @@ def option_vote(request, option_id):
     return HttpResponseRedirect(reverse('polls-view', args=(poll_id,)))
 
 
-def polls_result(request, poll_id):
-
-    poll = get_object_or_404(Poll, pk=poll_id)
-
-    choice_data = question.choice_set.all()
-
-    choice_texts = []
-    choice_votes = []
-
-    for choice in choice_data:
-        choice_texts.append(choice.choice_text)
-        choice_votes.append(choice.votes)
-
-    context = {'title':'Polls Results Page', 
-    'question':question, 
-    'choice_texts':choice_texts,
-    'choice_votes':choice_votes,
-    'choice_colours':['rgba(0, 209, 178, 0.55)'] * len(choice_data),
-    'choice_border_colours': ['rgba(0, 209, 178, 0.9)'] * len(choice_data)}
-
-    print(context)
-
-    return render(request, 'results.html', context)
-
-
-# View for questions list
 def polls_list(request):
 
     polls = Poll.objects.all()
@@ -79,8 +53,7 @@ def polls_list(request):
     return render(request, 'poll-list.html', context)
 
 
-# View which handles creating new questions through a form
-# Everything will be automatically validated in this form
+
 def polls_create(request):
 
     if request.method == 'POST':
@@ -92,15 +65,18 @@ def polls_create(request):
                 text = form.data[c]
                 if len(text) > 0:
                     Option.objects.create(text=text,poll=new)
+            
+            return HttpResponseRedirect(reverse('polls-list'))
     else:
         form = PollForm()
-        form_string = form.as_p()
-        form_string = form_string.replace('<input', '<input class="input"')\
-        .replace('<label', '<label class="label"')\
-        .replace('<select', '<div class="select is-multiple"><select')\
-        .replace('</select>', '</select></div>')
+        form = form.as_p()
+        form = form\
+                            .replace('<input', '<input class="input"')\
+                            .replace('<label', '<label class="label"')\
+                            .replace('<select', '<div class="select is-multiple"><select')\
+                            .replace('</select>', '</select></div>')
 
     context = {'title':'Polls Create Question', 
-                'form': form_string}
+                'form': form}
 
     return render(request, 'create-poll.html', context)

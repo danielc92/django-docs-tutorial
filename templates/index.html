@@ -4,7 +4,7 @@
 {% load static %}
 
 <!-- HERO BANNER -->
-<section class="hero is-primary is-medium is-bold">
+<section class="hero is-dark is-medium">
   <!-- Hero head: will stick at the top -->
   <div class="hero-head">
     {% include 'navbar.html' %}
@@ -20,7 +20,7 @@
       <p class="">
 				This is the first application I built using Django web framework. The official Django documentation was used as a starting point, following that, I adapted the application with more features, including the integration of an open source charting framework. It posed some challenges, in learning the overall structure of Django as well as becoming familiar with the way Django implements database ORM models, and deployment.
       </p>
-      <a href="{% url 'polls-list' %}" class="button is-medium is-outlined is-dark"><span class="icon is-medium">
+      <a href="{% url 'polls-list' %}" class="button is-medium is-light"><span class="icon is-medium">
 					<i class="fas fa-poll-h"></i>
 				</span><span>View polls</span></a>
       </div>
