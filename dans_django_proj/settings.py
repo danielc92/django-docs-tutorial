@@ -22,11 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY SETTINGS 
 
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'
+
 
 import json
 import pathlib
@@ -41,6 +37,11 @@ SECRET_KEY = ENV_DATA['DJANGO_SECRET_KEY']
 
 if ENV_DATA['DJANGO_ENVIRONMENT'] == 'PRODUCTION':
     DEBUG = False
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
 else:
     DEBUG = True
 
@@ -61,19 +62,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third party
-    'crispy_forms',
-    'django_crispy_bulma',
+    # 'crispy_forms',
+    # 'django_crispy_bulma',
 ]
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = (
-    "bootstrap",
-    "uni_form",
-    "bootstrap3",
-    "bootstrap4",
-    "bulma",
-)
+# CRISPY_ALLOWED_TEMPLATE_PACKS = (
+#     "bootstrap",
+#     "uni_form",
+#     "bootstrap3",
+#     "bootstrap4",
+#     "bulma",
+# )
 
-CRISPY_TEMPLATE_PACK = "bulma"
+# CRISPY_TEMPLATE_PACK = "bulma"
 
 
 MIDDLEWARE = [

@@ -10,9 +10,9 @@
 	<section class="container">
 		<article class="content">
 			<h2>Create a poll</h2>
-			<form class="form" method='POST'> 
+			<form class="form" method="POST"> 
 				{% csrf_token %}
-				{{ form|safe }}
+				{{ form }}
 				<input class="button is-primary is-outlined" type="submit" value="Save">
 			</form>
 		</article>
