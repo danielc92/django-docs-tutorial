@@ -61,6 +61,7 @@ def polls_result(request, question_id):
 def polls_questions_list(request):
 
     polls = Poll.objects.all()
+    
     paginator = Paginator(polls, 8)
 
     page = request.GET.get('page')
